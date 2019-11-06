@@ -1,0 +1,22 @@
+<nav class="navbar navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="container-fluid">
+        <div class="nav navbar-nav">
+            <a class="navbar-brand" routerLink="/">Augmentation Reality</a>
+            <a class="nav-item nav-link" routerLink="/profile">Profile</a>
+        </div>
+        <div class="nav navbar-nav navbar-right">
+            <a class="nav-item nav-link" (click)="logout()">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<!-- main content container -->
+<div class="jumbotron ">
+    <div class="container ">
+        <div class="row ">
+            <div class="col-sm-8 offset-sm-2 ">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
