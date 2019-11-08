@@ -1,0 +1,57 @@
+{
+    "home": {
+        "profile": "Profile",
+        "logOut": "Log Out"
+    },
+    "login": {
+        "login": "Log in",
+        "Username": "Username",
+        "Password": "Password",
+        "usrNameRequired": "Username is required",
+        "passWdRequired": "Password is required",
+        "register": "Register",
+        "regSuccessMsg": "Registration successful"
+    },
+    "profile": {
+        "profile": "Profile",
+        "fName": "First Name",
+        "fNameRequired": "First Name is required",
+        "lName": "Last Name",
+        "lNameRequired": "Last Name is required",
+        "email": "Email",
+        "emailrequired": "Email is required",
+        "emailInvalid": "Email is invalid",
+        "newPasswd": "New Password",
+        "keepBlank": "(keep blank if you don't want to change)",
+        "passwdLen": "Password must be at least 6 characters",
+        "contact": "Contact",
+        "contactRequired": "Contact is required",
+        "contactinvalid": "Contact is invalid",
+        "designation": "Designation",
+        "role": "Role",
+        "update": "Update",
+        "success": "Succes",
+        "updatedSuccessMsg": "Profile Updated Successfully",
+        "error": "Error"
+    },
+    "register": {
+        "register": "Register",
+        "fName": "First Name",
+        "fNameRequired": "First Name is required",
+        "lName": "Last Name",
+        "lNameRequired": "Last Name is required",
+        "email": "Email",
+        "emailrequired": "Email is required",
+        "emailInvalid": "Email is invalid",
+        "passwd": "Password",
+        "passwdRequired": "Password is required",
+        "passwdLen": "Password must be at least 6 characters",
+        "contact": "Contact",
+        "contactRequired": "Contact is required",
+        "contactinvalid": "Contact is invalid",
+        "designation": "Designation",
+        "role": "Role",
+        "update": "Update",
+        "cancel": "Cancel"
+    }
+}

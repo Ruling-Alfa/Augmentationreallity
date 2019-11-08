@@ -1,0 +1,57 @@
+{
+    "home": {
+        "profile": "Profiel",
+        "logOut": "Uitloggen"
+    },
+    "login": {
+        "login": "Log In",
+        "Username": "Gebruikersnaam",
+        "Password": "Wachtwoord",
+        "usrNameRequired": "Gebruikersnaam is verplicht",
+        "passWdRequired": "Een wachtwoord is verplicht",
+        "register": "Registreren",
+        "regSuccessMsg": "Registratie gelukt"
+    },
+    "profile": {
+        "profile": "Profiel",
+        "fName": "Voornaam",
+        "fNameRequired": "Voornaam is verplicht",
+        "lName": "Achternaam",
+        "lNameRequired": "Achternaam is verplicht",
+        "email": "E-mail",
+        "emailrequired": "Email is verplicht",
+        "emailInvalid": "Email is ongeldig",
+        "newPasswd": "Nieuw paswoord",
+        "keepBlank": "(leeg houden als u niet wilt veranderen)",
+        "passwdLen": "Wachtwoord moet tenminste 6 tekens bevatten",
+        "contact": "Contact",
+        "contactRequired": "Contact is vereist",
+        "contactinvalid": "Contact is ongeldig",
+        "designation": "Aanwijzing",
+        "role": "Rol",
+        "update": "Bijwerken",
+        "success": "Succes",
+        "updatedSuccessMsg": "Profiel succesvol bijgewerkt",
+        "error": "Fout"
+    },
+    "register": {
+        "register": "Registreren",
+        "fName": "Voornaam",
+        "fNameRequired": "Voornaam is verplicht",
+        "lName": "Achternaam",
+        "lNameRequired": "Achternaam is verplicht",
+        "email": "E-mail",
+        "emailrequired": "E-mail is verplicht",
+        "emailInvalid": "E-mail is ongeldig",
+        "passwd": "Wachtwoord",
+        "passwdRequired": "Een wachtwoord is verplicht",
+        "passwdLen": "Wachtwoord moet tenminste 6 tekens bevatten",
+        "contact": "Contact",
+        "contactRequired": "Contact is vereist",
+        "contactinvalid": "Contact is ongeldig",
+        "designation": "Aanwijzing",
+        "role": "Rol",
+        "update": "Bijwerken",
+        "cancel": "Annuleren"
+    }
+}

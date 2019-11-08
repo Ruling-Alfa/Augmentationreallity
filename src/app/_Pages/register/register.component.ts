@@ -1,32 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { first, takeUntil } from 'rxjs/operators';
 
 import { UserService, AuthenticationService } from '../../_services';
+import { LangService } from 'src/app/_services/translate.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
-  registerForm: FormGroup;
+    registerForm: FormGroup;
     loading = false;
     submitted = false;
     error: string;
+    lang: string;
 
+    private Unsub$ = new Subject<void>();
+    
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private userService: UserService
+        private userService: UserService,
+        private langService:LangService
     ) {
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);
         }
+
+        var culture = localStorage.getItem("culture");
+        if(!culture){
+            culture = "en-US";
+        }
+
+        this.lang = culture;
+        langService.SetLang(this.lang);
+
+        langService.Getlang().pipe(takeUntil(this.Unsub$)).subscribe(x => {
+            this.lang = x;
+            if(!this.lang ){
+                this.lang ="en-US";
+                langService.SetLang(this.lang);
+            }
+        });
     }
 
     ngOnInit() {
@@ -39,6 +61,15 @@ export class RegisterComponent implements OnInit {
             designation:[],
             role:[]
         });
+    }
+
+    ngOnDestroy(): void {
+        this.Unsub$.next();
+        this.Unsub$.complete();
+    }
+
+    useLanguage(language: string) {
+        this.langService.SetLang(language);
     }
 
     // convenience getter for easy access to form fields

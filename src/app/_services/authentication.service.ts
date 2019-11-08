@@ -30,7 +30,7 @@ export class AuthenticationService {
     
 
     login(username, password) {
-        return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { username, password })
+        return this.http.post<any>(`${config.apiUrl}/${this.getCulture()}/users/authenticate`, { username, password })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
@@ -43,5 +43,13 @@ export class AuthenticationService {
         // remove user from local storage and set current user to null
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+    }
+
+    private getCulture(){
+        let culture = localStorage.getItem("culture");
+        if(!culture){
+            culture = "en-US";
+        }
+        return culture;
     }
 }

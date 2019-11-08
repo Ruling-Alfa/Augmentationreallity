@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
+.padBtn {
+    padding: 0px 20px !important;
+}
+
+.norwayFlag {
+    background-image: url(./assets/norwayFlag.png);
+    background-repeat: no-repeat;
+    background-size: 25px 15px;
+    width: 25px;
+    height: 25px;
+}
+
+.ukFlag {
+    background-image: url(./assets/ukFlag.png);
+    background-repeat: no-repeat;
+    background-size: 25px 15px;
+    width: 25px;
+    height: 25px;
+}
+
+.clickPointer {
+    cursor: pointer;
+}

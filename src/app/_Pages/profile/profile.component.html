@@ -1,60 +1,60 @@
 <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-<h2>Profile</h2>
+<h2>{{ 'profile.profile' | translate }}</h2>
 <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="firstName">First Name</label>
+        <label for="firstName">{{ 'profile.fName' | translate }}</label>
         <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
         <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+            <div *ngIf="f.firstName.errors.required">{{ 'profile.fNameRequired' | translate }}</div>
         </div>
     </div>
     <div class="form-group">
-        <label for="lastName">Last Name</label>
+        <label for="lastName">{{ 'profile.lName' | translate }}</label>
         <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
         <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+            <div *ngIf="f.lastName.errors.required">{{ 'profile.lNameRequired' | translate }}</div>
         </div>
     </div>
     <div class="form-group">
-        <label for="username">Email</label>
+        <label for="username">{{ 'profile.email' | translate }}</label>
         <input type="text" formControlName="username" class="form-control" readonly [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Email is required</div>
-            <div *ngIf="f.username.errors.email">Email is invalid</div>
+            <div *ngIf="f.username.errors.required">{{ 'profile.emailRequired' | translate }}</div>
+            <div *ngIf="f.username.errors.email">{{ 'profile.emailInvalid' | translate }}</div>
 
         </div>
     </div>
     <div class="form-group">
-        <label for="password">New Password</label>
+        <label for="password">{{ 'profile.newPasswd' | translate}}</label>
         <div class="font-italic">
-            <div>(keep blank if you don't want to change)</div>
+            <div>{{ 'profile.keepBlank' | translate }}</div>
         </div>
         <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            <div *ngIf="f.password.errors.minlength">{{ 'profile.passwdLen' | translate }}</div>
         </div>
-       
+
     </div>
     <div class="form-group">
-        <label for="contact">Contact</label>
+        <label for="contact">{{ 'profile.contact' | translate }}</label>
         <input type="text" formControlName="contact" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" />
         <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
-            <div *ngIf="f.contact.errors.required">Contact is required</div>
-            <div *ngIf="f.contact.errors.pattern">Contact is invalid</div>
+            <div *ngIf="f.contact.errors.required">{{ 'profile.contactRequired' | translate }}</div>
+            <div *ngIf="f.contact.errors.pattern">{{ 'profile.contactInvalid' | translate }}</div>
         </div>
     </div>
     <div class="form-group">
-        <label for="designation">Designation</label>
+        <label for="designation">{{ 'profile.designation' | translate }}</label>
         <input type="text" formControlName="designation" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.designation.errors }" />
     </div>
     <div class="form-group">
-        <label for="role">Role</label>
+        <label for="role">{{ 'profile.role' | translate }}</label>
         <input type="text" formControlName="role" class="form-control" disabled/>
     </div>
     <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Update
+            {{ 'profile.update' | translate }}
         </button>
     </div>
 </form>

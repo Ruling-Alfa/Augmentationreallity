@@ -2,10 +2,16 @@
     <div class="container-fluid">
         <div class="nav navbar-nav">
             <a class="navbar-brand" routerLink="/">Augmentation Reality</a>
-            <a class="nav-item nav-link" routerLink="/profile">Profile</a>
+            <a class="nav-item nav-link" routerLink="/profile">{{ 'home.profile' | translate }}</a>
         </div>
-        <div class="nav navbar-nav navbar-right">
-            <a class="nav-item nav-link" (click)="logout()">Logout</a>
+        <div class="nav navbar-nav navbar-right" style="flex-direction: row;">
+            <a class="nav-item nav-link padBtn" (click)="useLanguage('en-US')">
+                <div class="ukFlag"></div>
+            </a>
+            <a class="nav-item nav-link padBtn" (click)="useLanguage('nl-NL')">
+                <div class="norwayFlag"></div>
+            </a>
+            <a class="nav-item nav-link padBtn" (click)="logout()">{{ 'home.logOut' | translate }}</a>
         </div>
     </div>
 </nav>

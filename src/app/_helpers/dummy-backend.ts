@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
+import { stringify } from 'querystring';
 
 let users = [{ id: 1, firstName: 'Neel', lastName: 'Acharya', username: 'neel@email.com', password: 'neel', role : 'admin', contact:'1234567890', designation: 'Owner' }];
 
@@ -18,26 +19,37 @@ export class DummyBackendInterceptor implements HttpInterceptor {
             .pipe(dematerialize());
 
         function handleRoute() {
+            let lang : string  = 'en-US';
+            
+            if(url.toLowerCase().includes('nl-nl')){
+                lang = 'nl-NL';
+            }
+
             switch (true) {
                 case url.endsWith('/users/authenticate') && method === 'POST':
-                    return authenticate();
+                    return authenticate(lang);
                 case url.endsWith('/users/register') && method === 'POST':
-                    return register();
+                    return register(lang);
                 case url.endsWith('/users/update') && method === 'POST':
-                    return update();
+                    return update(lang);
                 case url.endsWith('/users') && method === 'GET':
-                    return getUsers();
+                    return getUsers(lang);
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
-                    return deleteUser();
+                    return deleteUser(lang);
                 default:
                     return next.handle(request);
             }    
         }
 
-        function authenticate() {
+        function authenticate(lang: string) {
+            let errMsg = 'Username or password is incorrect';
+            if(lang==='nl-NL')
+            {
+                errMsg = 'Gebruikersnaam of wachtwoord is onjuist';
+            }
             const { username, password } = body;
             const user = users.find(x => x.username === username && x.password === password);
-            if (!user) return error('Username or password is incorrect');
+            if (!user) return error(errMsg);
             return ok({
                 id: user.id,
                 username: user.username,
@@ -50,11 +62,17 @@ export class DummyBackendInterceptor implements HttpInterceptor {
             })
         }
 
-        function register() {
+        function register(lang: string) {
             const user = body
 
+            let errMsg = 'Username  "' + user.username + '" is already taken';
+            if(lang==='nl-NL')
+            {
+                errMsg = 'Gebruikersnaam "' + user.username + '" is al in gebruik';
+            }
+
             if (users.find(x => x.username === user.username)) {
-                return error('Username "' + user.username + '" is already taken')
+                return error(errMsg)
             }
 
             user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
@@ -64,12 +82,18 @@ export class DummyBackendInterceptor implements HttpInterceptor {
             return ok();
         }
 
-        function update() {
+        function update(lang: string) {
             const user = body
             var existingusr = users.find(x => x.username === user.username);
             
+            let errMsg = 'Username unavailable';
+            if(lang==='nl-NL')
+            {
+                errMsg = 'Gebruikersnaam niet beschikbaar';
+            }
+
             if (!existingusr) {
-                return error('Username unavailable')
+                return error(errMsg)
             }
 
             existingusr.firstName = user.firstName;
@@ -86,13 +110,13 @@ export class DummyBackendInterceptor implements HttpInterceptor {
             return ok(existingusr);
         }
 
-        function getUsers() {
-            if (!isLoggedIn()) return unauthorized();
+        function getUsers(lang: string) {
+            if (!isLoggedIn()) return unauthorized(lang);
             return ok(users);
         }
 
-        function deleteUser() {
-            if (!isLoggedIn()) return unauthorized();
+        function deleteUser(lang: string) {
+            if (!isLoggedIn()) return unauthorized(lang);
 
             users = users.filter(x => x.id !== idFromUrl());
             localStorage.setItem('users', JSON.stringify(users));
@@ -106,8 +130,14 @@ export class DummyBackendInterceptor implements HttpInterceptor {
         function error(message) {
             return throwError({ error: { message } });
         }
-        function unauthorized() {
-            return throwError({ status: 401, error: { message: 'Unauthorised' } });
+        function unauthorized(lang: string) {
+            let errMsg = 'Unauthorised';
+            if(lang==='nl-NL')
+            {
+                errMsg = 'Onbevoegd';
+            }
+
+            return throwError({ status: 401, error: { message: errMsg } });
         }
 
         function isLoggedIn() {

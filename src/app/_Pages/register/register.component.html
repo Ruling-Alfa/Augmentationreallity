@@ -1,51 +1,61 @@
 <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-<h2>Register</h2>
+<h2>{{ 'register.register' | translate }}</h2>
+<div style="float:right;">
+    <div style="flex-direction: row;">
+        <a class="nav-item nav-link padBtn" (click)="useLanguage('en-US')">
+            <div class="ukFlag clickPointer"></div>
+        </a>
+        <a class="nav-item nav-link padBtn" (click)="useLanguage('nl-NL')">
+            <div class="norwayFlag clickPointer"></div>
+        </a>
+    </div>
+</div>
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="firstName">First Name</label>
+        <label for="firstName">{{ 'register.fName' | translate }}</label>
         <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
         <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+            <div *ngIf="f.firstName.errors.required">{{ 'register.fNameRequired' | translate }}</div>
         </div>
     </div>
     <div class="form-group">
-        <label for="lastName">Last Name</label>
+        <label for="lastName">{{ 'register.lName' | translate }}</label>
         <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
         <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+            <div *ngIf="f.lastName.errors.required">{{ 'register.lNameRequired' | translate }}</div>
         </div>
     </div>
     <div class="form-group">
-        <label for="username">Email</label>
+        <label for="username">{{ 'register.email' | translate }}</label>
         <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Email is required</div>
-            <div *ngIf="f.username.errors.email">Email is invalid</div>
+            <div *ngIf="f.username.errors.required">{{ 'register.emailReqiored' | translate }}</div>
+            <div *ngIf="f.username.errors.email">{{ 'register.emailInvalid' | translate }}</div>
 
         </div>
     </div>
     <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">{{ 'register.passwd' | translate }}</label>
         <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
-            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            <div *ngIf="f.password.errors.required">{{ 'register.passwdRequired' | translate }}</div>
+            <div *ngIf="f.password.errors.minlength">{{ 'register.passwdLen' | translate }}</div>
         </div>
     </div>
     <div class="form-group">
-        <label for="contact">Contact</label>
+        <label for="contact">{{ 'register.contact' | translate }}</label>
         <input type="text" formControlName="contact" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" />
         <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
-            <div *ngIf="f.contact.errors.required">Contact is required</div>
-            <div *ngIf="f.contact.errors.pattern">Contact is invalid</div>
+            <div *ngIf="f.contact.errors.required">{{ 'register.contactRequired' | translate }}</div>
+            <div *ngIf="f.contact.errors.pattern">{{ 'register.contactinvalid' | translate }}</div>
         </div>
     </div>
     <div class="form-group">
-        <label for="designation">Designation</label>
+        <label for="designation">{{ 'register.designation' | translate }}</label>
         <input type="text" formControlName="designation" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.designation.errors }" />
     </div>
     <div class="form-group">
-        <label for="role">Role</label>
+        <label for="role">{{ 'register.role' | translate }}</label>
         <select formControlName="role" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
             <option value="admin">Admin</option>
             <option value="user" selected>User</option>
@@ -54,8 +64,8 @@
     <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Register
+            {{ 'register.register' | translate }}
         </button>
-        <a routerLink="/login" class="btn btn-link">Cancel</a>
+        <a routerLink="/login" class="btn btn-link">{{ 'register.cancel' | translate }}</a>
     </div>
 </form>
